@@ -8,8 +8,6 @@
 
 :point_right: [Figma Design](https://www.figma.com/proto/ARPMAVZrOtfmDplRhjRnRA/First-Project?node-id=324%3A7&scaling=scale-down&page-id=0%3A1)
 
-![image](https://user-images.githubusercontent.com/59710234/212488879-9e1b16d9-5567-4f09-93aa-f02a28c83a79.png)
-
 <img src="https://user-images.githubusercontent.com/59710234/212535747-87e8ae62-5e91-433a-8a6c-c984071382e2.png" height="600">
 
 ![image](https://user-images.githubusercontent.com/59710234/212499727-b7ec55eb-4ade-4a2f-8913-233af097f6ae.png)
