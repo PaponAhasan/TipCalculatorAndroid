@@ -8,7 +8,7 @@
 
 :point_right: [Figma Design](https://www.figma.com/proto/ARPMAVZrOtfmDplRhjRnRA/First-Project?node-id=324%3A7&scaling=scale-down&page-id=0%3A1)
 
-![TipCalculator-2023-01-15-at-9 38 38-PM](https://user-images.githubusercontent.com/59710234/212551078-07a3482f-9e28-4359-8685-2a70bd65b66b.gif)
+<img src="https://user-images.githubusercontent.com/59710234/212551078-07a3482f-9e28-4359-8685-2a70bd65b66b.gif" height="600">
 
 <img src="https://user-images.githubusercontent.com/59710234/212535747-87e8ae62-5e91-433a-8a6c-c984071382e2.png" height="600">
 
