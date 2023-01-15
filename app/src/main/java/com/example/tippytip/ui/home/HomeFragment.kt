@@ -1,7 +1,6 @@
 package com.example.tippytip.ui.home
 
 import android.animation.ArgbEvaluator
-import android.graphics.Color
 import android.os.Bundle
 import android.text.Editable
 import android.text.InputFilter
@@ -14,7 +13,6 @@ import android.widget.SeekBar
 import android.widget.Toast
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.example.tippytip.R
 import com.example.tippytip.databinding.FragmentHomeBinding
@@ -62,10 +60,9 @@ class HomeFragment : Fragment() {
             }
 
         })
-        binding.etNumberOfPerson.addTextChangedListener(object :TextWatcher{
-            override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {}
 
-            override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
+        binding.etNumberOfPerson.addTextChangedListener(object :TextWatcher{
+            override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
                 val inputFilter = InputFilter { source, start, end, dest, dstart, dend ->
                     if (dstart == 0 && source.startsWith("0")) {
                         ""
@@ -74,11 +71,14 @@ class HomeFragment : Fragment() {
                 binding.etNumberOfPerson.filters = arrayOf(inputFilter)
             }
 
+            override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {}
+
             override fun afterTextChanged(p0: Editable?) {
                 computeTipAndTotal()
             }
 
         })
+
         binding.checkBoxRoundAmount.setOnCheckedChangeListener{buttonView, isChecked ->
             if (isChecked) {
                 // The checkbox is checked
@@ -99,8 +99,10 @@ class HomeFragment : Fragment() {
     }
 
     private fun computeRoundTipAndTotal() {
-        binding.tvTipAmount.text = binding.tvTipAmount.text.toString().toDouble().roundToInt().toString()
-        binding.tvTotalAmount.text = binding.tvTotalAmount.text.toString().toDouble().roundToInt().toString()
+        if(binding.tvTipAmount.text.isNotEmpty() or binding.tvTotalAmount.text.isNotEmpty()){
+            binding.tvTipAmount.text = binding.tvTipAmount.text.toString().toDouble().roundToInt().toString()
+            binding.tvTotalAmount.text = binding.tvTotalAmount.text.toString().toDouble().roundToInt().toString()
+        }
     }
 
     private fun updateTipDescription(tipPercent: Int) {
@@ -128,8 +130,12 @@ class HomeFragment : Fragment() {
         if(binding.etBaseAmount.text.isEmpty() or binding.etNumberOfPerson.text.isEmpty()){
             binding.tvTipAmount.text = ""
             binding.tvTotalAmount.text = ""
+            binding.checkBoxRoundAmount.visibility = View.INVISIBLE
+            binding.btnSave.visibility = View.INVISIBLE
             return
         }
+        binding.checkBoxRoundAmount.visibility = View.VISIBLE
+        binding.btnSave.visibility = View.VISIBLE
         // 1. Get the value of the base and tip percent
         val baseAmount = binding.etBaseAmount.text.toString().toDouble()
         val numberOfPerson = binding.etNumberOfPerson.text.toString().toInt()
