@@ -16,6 +16,7 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.example.tippytip.R
 import com.example.tippytip.databinding.FragmentHomeBinding
+import com.example.tippytip.ui.dashboard.DashboardViewModel
 import kotlin.math.roundToInt
 
 private const val TAG = "HomeFragment"
@@ -29,13 +30,15 @@ class HomeFragment : Fragment() {
     private val binding get() = _binding!!
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
-        ViewModelProvider(this)[HomeViewModel::class.java]
+        val homeViewModel =
+            ViewModelProvider(this).get(HomeViewModel::class.java)
 
         _binding = FragmentHomeBinding.inflate(inflater, container, false)
 
         binding.seekBarTip.progress = INITIAL_TIP_PERCENT
         binding.tvTipPercentLabel.text = "$INITIAL_TIP_PERCENT%"
         updateTipDescription(INITIAL_TIP_PERCENT)
+
         binding.seekBarTip.setOnSeekBarChangeListener(object : SeekBar.OnSeekBarChangeListener{
             override fun onProgressChanged(p0: SeekBar?, progress: Int, fromUser: Boolean) {
                 Log.e(TAG, "onProgressChanged $progress")
@@ -49,6 +52,7 @@ class HomeFragment : Fragment() {
             override fun onStopTrackingTouch(p0: SeekBar?) {}
 
         })
+
         binding.etBaseAmount.addTextChangedListener(object :TextWatcher{
             override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
 
@@ -90,11 +94,13 @@ class HomeFragment : Fragment() {
                 Toast.makeText(context, "Unchecked", Toast.LENGTH_SHORT).show()
             }
         }
+
         binding.btnSave.setOnClickListener{
             if(binding.tvTipAmount.text.isNotEmpty()){
                 Toast.makeText(context, "Saved your result", Toast.LENGTH_SHORT).show()
             }
         }
+
         return binding.root
     }
 

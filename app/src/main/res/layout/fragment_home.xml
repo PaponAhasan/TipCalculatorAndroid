@@ -7,16 +7,15 @@
     tools:context=".ui.home.HomeFragment">
 
     <TextView
-        android:id="@+id/textView3"
+        android:id="@+id/tvTipPerPersonLabel"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="1dp"
         android:fontFamily="sans-serif-condensed-light"
         android:text="per person"
-        android:textColor="@color/material_dynamic_neutral70"
+        android:textColor="#AAABAE"
         android:textSize="12sp"
-        app:layout_constraintEnd_toEndOf="@+id/tvTotalLabel"
-        app:layout_constraintTop_toBottomOf="@+id/tvTotalLabel" />
+        app:layout_constraintEnd_toEndOf="@+id/tvTipLabel"
+        app:layout_constraintTop_toBottomOf="@+id/tvTipLabel" />
 
     <TextView
         android:id="@+id/tvBaseLabel"
@@ -41,14 +40,24 @@
         app:layout_constraintTop_toBottomOf="@+id/tvBaseLabel" />
 
     <TextView
+        android:id="@+id/tvPersonLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="56dp"
+        android:text="Person"
+        android:textSize="18sp"
+        app:layout_constraintEnd_toEndOf="@+id/tvTipPercentLabel"
+        app:layout_constraintTop_toBottomOf="@+id/tvTipPercentLabel" />
+
+    <TextView
         android:id="@+id/tvTipLabel"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="32dp"
         android:text="Tip"
         android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-        app:layout_constraintEnd_toEndOf="@+id/textView"
-        app:layout_constraintTop_toBottomOf="@+id/textView" />
+        app:layout_constraintEnd_toEndOf="@+id/tvPersonLabel"
+        app:layout_constraintTop_toBottomOf="@+id/tvPersonLabel" />
 
     <TextView
         android:id="@+id/tvTotalLabel"
@@ -60,20 +69,6 @@
         app:layout_constraintEnd_toEndOf="@+id/tvTipLabel"
         app:layout_constraintTop_toBottomOf="@+id/tvTipLabel" />
 
-    <EditText
-        android:id="@+id/etBaseAmount"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="32dp"
-        android:ems="8"
-        android:hint="Bill Amount"
-        android:inputType="numberDecimal"
-        android:textColorHint="@color/material_dynamic_neutral70"
-        android:textSize="22sp"
-        app:layout_constraintBottom_toBottomOf="@id/tvBaseLabel"
-        app:layout_constraintStart_toEndOf="@+id/tvBaseLabel"
-        app:layout_constraintTop_toTopOf="@id/tvBaseLabel" />
-
     <SeekBar
         android:id="@+id/seekBarTip"
         android:layout_width="200dp"
@@ -84,14 +79,27 @@
         app:layout_constraintTop_toTopOf="@+id/tvTipPercentLabel" />
 
     <TextView
-        android:id="@+id/tvTotalAmount"
+        android:id="@+id/tvTipDescription"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textAppearance="@style/TextAppearance.AppCompat.Large"
-        app:layout_constraintBottom_toBottomOf="@+id/tvTotalLabel"
-        app:layout_constraintStart_toStartOf="@+id/tvTipAmount"
-        app:layout_constraintTop_toTopOf="@+id/tvTotalLabel"
-        tools:text="103.96" />
+        android:layout_marginTop="8dp"
+        android:text="Acceptable"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="@+id/seekBarTip"
+        app:layout_constraintStart_toStartOf="@+id/seekBarTip"
+        app:layout_constraintTop_toBottomOf="@+id/seekBarTip" />
+
+    <EditText
+        android:id="@+id/etNumberOfPerson"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ems="8"
+        android:hint="Number of Person"
+        android:inputType="numberSigned"
+        android:textSize="24sp"
+        app:layout_constraintBottom_toBottomOf="@+id/tvPersonLabel"
+        app:layout_constraintStart_toStartOf="@+id/seekBarTip"
+        app:layout_constraintTop_toTopOf="@+id/tvPersonLabel" />
 
     <TextView
         android:id="@+id/tvTipAmount"
@@ -103,6 +111,28 @@
         app:layout_constraintTop_toTopOf="@+id/tvTipLabel"
         tools:text="19.96" />
 
+    <TextView
+        android:id="@+id/tvTotalAmount"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="@style/TextAppearance.AppCompat.Large"
+        app:layout_constraintBottom_toBottomOf="@+id/tvTotalLabel"
+        app:layout_constraintStart_toStartOf="@+id/tvTipAmount"
+        app:layout_constraintTop_toTopOf="@+id/tvTotalLabel"
+        tools:text="103.96" />
+
+    <Button
+        android:id="@+id/btnSave"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:text="Save Calculation "
+        android:visibility="invisible"
+        app:layout_constraintStart_toStartOf="@+id/checkBoxRoundAmount"
+        app:layout_constraintTop_toBottomOf="@+id/checkBoxRoundAmount"
+        tools:text="Save Calculation " />
+
+    <!-- Footer-->
     <TextView
         android:id="@+id/tvFooter"
         android:layout_width="wrap_content"
@@ -116,73 +146,40 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
-    <TextView
-        android:id="@+id/tvTipDescription"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="@+id/seekBarTip"
-        app:layout_constraintStart_toStartOf="@+id/seekBarTip"
-        app:layout_constraintTop_toBottomOf="@+id/seekBarTip"
-        tools:text="Acceptable" />
-
-    <TextView
-        android:id="@+id/textView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="56dp"
-        android:text="Person"
-        android:textSize="18sp"
-        app:layout_constraintEnd_toEndOf="@+id/tvTipPercentLabel"
-        app:layout_constraintTop_toBottomOf="@+id/tvTipPercentLabel" />
-
     <EditText
-        android:id="@+id/etNumberOfPerson"
+        android:id="@+id/etBaseAmount"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
         android:ems="8"
-        android:hint="Number of Person"
-        android:inputType="numberSigned"
-        android:textSize="22sp"
-        app:layout_constraintBottom_toBottomOf="@+id/textView"
-        app:layout_constraintStart_toStartOf="@+id/seekBarTip"
-        app:layout_constraintTop_toTopOf="@+id/textView" />
+        android:hint="Bill Amount"
+        android:inputType="numberDecimal"
+        android:textSize="24sp"
+        app:layout_constraintBottom_toBottomOf="@id/tvBaseLabel"
+        app:layout_constraintStart_toEndOf="@+id/tvBaseLabel"
+        app:layout_constraintTop_toTopOf="@id/tvBaseLabel" />
 
-    <Button
-        android:id="@+id/btnSave"
+    <TextView
+        android:id="@+id/tvTotalPerPersonLabel"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
-        android:text="Save Calculation "
-        android:visibility="invisible"
-        app:layout_constraintStart_toStartOf="@+id/checkBoxRoundAmount"
-        app:layout_constraintTop_toBottomOf="@+id/checkBoxRoundAmount"
-        tools:text="Save Calculation " />
+        android:fontFamily="sans-serif-condensed-light"
+        android:text="per person"
+        android:textColor="#AAABAE"
+        android:textSize="12sp"
+        app:layout_constraintEnd_toEndOf="@+id/tvTotalLabel"
+        app:layout_constraintTop_toBottomOf="@+id/tvTotalLabel" />
 
     <CheckBox
         android:id="@+id/checkBoxRoundAmount"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="40dp"
-        android:fontFamily="sans-serif"
+        android:layout_marginTop="28dp"
         android:text="Round up to amount"
-        android:textColor="@color/material_dynamic_neutral60"
+        android:textColor="#8f9193"
         android:textStyle="bold"
         android:visibility="invisible"
         app:layout_constraintStart_toStartOf="@+id/tvTotalAmount"
-        app:layout_constraintTop_toTopOf="@id/tvTotalAmount" />
-
-    <TextView
-        android:id="@+id/textView2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="1dp"
-        android:fontFamily="sans-serif-condensed-light"
-        android:text="per person"
-        android:textColor="@color/material_dynamic_neutral70"
-        android:textSize="12sp"
-        app:layout_constraintEnd_toEndOf="@+id/tvTipLabel"
-        app:layout_constraintTop_toBottomOf="@+id/tvTipLabel" />
+        app:layout_constraintTop_toBottomOf="@+id/tvTotalAmount" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
